@@ -1,0 +1,4 @@
+Development notes:
+###################
+Add in auto plotting of profile, as argument
+default use of viridis colours, choice of other palettes?
