@@ -1,47 +1,42 @@
-testdata <- read.csv("Example.csv", stringsAsFactors = TRUE)
-
-totals <- aggregate(testdata, by=list(c(testdata$Distance)), FUN=sum, na.rm=TRUE)
-
-# calc totals
-totals <- totals[, -1]
-
-# remove heights
-orgs <- totals[,-2]
-
-# for checking
-survey <- orgs
-min_abund <- 40
-colSums(survey)
-
-nongooglekites(orgs, 1)
-
-
-# function to be revised
+#' Plot kite diagram
+#'
+#' @param survey Survey data.
+#' @param min_abund Minimum total abundance of taxa to be included on plot.
+#' @return Kite diagram plot (base graphics).
+#'
+#' @importFrom viridisLite viridis
+#' @importFrom graphics par plot axis polygon
+#' @importFrom stats aggregate
+#'
+#' @export plot_kite
+# kite plotting function
 # -----------------------------------------------------------
-nongooglekites<-function(survey, min_abund=50){
-
-  require(viridis)
+plot_kite<-function(survey, min_abund=50){
 
   # turn off warnings temporarily, as columns do not have headers
   options(warn=-1)
 
-  # remove taxa that are not above min_abund
-##########
-  survey <- orgs
+  # calc totals
+  survey <- aggregate(survey, by=list(c(survey[,1])), FUN=sum, na.rm=TRUE)
 
+  # remove sum of distances
+  survey <- survey[, -2]
 
-  colSums(survey[2:ncol(survey)])
-  # remove any cols with less than min abundance
+  # calculate totals for each column (taxon)
+  sums <- colSums(survey[2:ncol(survey)])
+
+  # are there any columns < min abundance then remove them
+  if (all(sums < min_abund)){
+    stop("No species above 'min_abund' specified")
+  }
+  if (any(sums < min_abund)){
     survey<-cbind(survey[,1], survey[2:ncol(survey)][, -which(colSums(survey[2:ncol(survey)]) < min_abund)])
+  }
+  # add distance column name on
+  colnames(survey)[1] <- "Distance"
 
-    survey<-survey[2:ncol(survey)][, -which(colSums(survey[2:ncol(survey)]) < min_abund)]
-    survey[,1]
-
-    names(survey)
-      # rescale the abundances for the plotting of the polygons
+    # rescale the abundances for the plotting of the polygons
   # scaled based on the max abundance of any of the taxa being plotted
-# add distances back
-
   survey[,2:ncol(survey)] <- (survey[,2:ncol(survey)] / max(survey[,2:ncol(survey)]))/2
 
   # copy data for polygon coordinate creation
@@ -82,8 +77,7 @@ nongooglekites<-function(survey, min_abund=50){
     polygon(xValues,yValues, col=colours[[i-1]], border=colours[[i-1]])
   }
 
-  #  par(mar=oldMargins)
-
+  par(mar=oldMargins)
   # turn warnings back on
   options(warn=0)
 }
