@@ -1,20 +1,22 @@
 #' Plot kite diagram
 #'
-#' @param survey Survey data.
+#' @param survey Shore survey (or other) data. First column are distances
+#' (can have replicates at each distance) and remaining columns are abundances
+#' of each taxon (with name as column header).
 #' @param min_abund Minimum total abundance of taxa to be included on plot.
-#' @return Kite diagram plot (base graphics).
+#' Defaults to 50.
+#' @return Kite diagram plot (drawn with base graphics).
 #'
 #' @importFrom viridisLite viridis
 #' @importFrom graphics par plot axis polygon
 #' @importFrom stats aggregate
 #'
 #' @export plot_kite
-# kite plotting function
 # -----------------------------------------------------------
 plot_kite<-function(survey, min_abund=50){
 
   # turn off warnings temporarily, as columns do not have headers
-  options(warn=-1)
+#  options(warn=-1)
 
   # calc totals
   survey <- aggregate(survey, by=list(c(survey[,1])), FUN=sum, na.rm=TRUE)
@@ -35,7 +37,7 @@ plot_kite<-function(survey, min_abund=50){
   # add distance column name on
   colnames(survey)[1] <- "Distance"
 
-    # rescale the abundances for the plotting of the polygons
+  # rescale the abundances for the plotting of the polygons
   # scaled based on the max abundance of any of the taxa being plotted
   survey[,2:ncol(survey)] <- (survey[,2:ncol(survey)] / max(survey[,2:ncol(survey)]))/2
 
@@ -77,9 +79,10 @@ plot_kite<-function(survey, min_abund=50){
     polygon(xValues,yValues, col=colours[[i-1]], border=colours[[i-1]])
   }
 
+  # reset margins to default
   par(mar=oldMargins)
   # turn warnings back on
-  options(warn=0)
+#  options(warn=0)
 }
 # end of function
 

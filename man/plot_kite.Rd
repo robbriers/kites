@@ -7,12 +7,15 @@
 plot_kite(survey, min_abund = 50)
 }
 \arguments{
-\item{survey}{Survey data.}
+\item{survey}{Shore survey (or other) data. First column are distances
+(can have replicates at each distance) and remaining columns are abundances
+of each taxon (with name as column header).}
 
-\item{min_abund}{Minimum total abundance of taxa to be included on plot.}
+\item{min_abund}{Minimum total abundance of taxa to be included on plot.
+Defaults to 50.}
 }
 \value{
-Kite diagram plot (base graphics).
+Kite diagram plot (drawn with base graphics).
 }
 \description{
 Plot kite diagram
