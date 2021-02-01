@@ -11,5 +11,6 @@
 #'
 #' @keywords datasets
 #'
-#' @source Students and staff of Population and Community Ecology module 2016
+#' @source Students and staff of ENV09103 Population and Community Ecology
+#' module 2016.
 "kames2016"

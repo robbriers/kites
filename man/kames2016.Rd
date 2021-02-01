@@ -8,7 +8,8 @@
 An object of class \code{data.frame} with 16 rows and 7 columns.
 }
 \source{
-Students and staff of Population and Community Ecology module 2016
+Students and staff of ENV09103 Population and Community Ecology
+module 2016.
 }
 \usage{
 data(kames2016)

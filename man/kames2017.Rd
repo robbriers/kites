@@ -9,7 +9,7 @@ An object of class \code{data.frame} with 67 rows and 10 columns.
 }
 \source{
 Students and staff of ENV09103 Population and Community Ecology
-module 2017
+module 2017.
 }
 \usage{
 data(kames2017)
