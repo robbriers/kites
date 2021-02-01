@@ -9,6 +9,7 @@ Install via:
     install_github("robbriers/kites")
 
 Example usage
+
     # load package
     library(kites)
 
@@ -21,3 +22,4 @@ Example usage
     # plot the kite diagram, with taxa >20 total abundance
     plot_kite(kames2016, 20)
     
+![](docs/kames2016_kite.png)
