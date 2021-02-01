@@ -4,7 +4,7 @@
 \alias{plot_kite}
 \title{Plot kite diagram}
 \usage{
-plot_kite(survey, min_abund = 50)
+plot_kite(survey, min_abund = 50, xlabtext = NULL)
 }
 \arguments{
 \item{survey}{Shore survey (or other) data. First column are distances
@@ -13,6 +13,9 @@ of each taxon (with name as column header).}
 
 \item{min_abund}{Minimum total abundance of taxa to be included on plot.
 Defaults to 50.}
+
+\item{xlabtext}{Text for x axis label. Defaults to "Distance from LW (m)" if
+not provided.}
 }
 \value{
 Kite diagram plot (drawn with base graphics).

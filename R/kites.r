@@ -5,6 +5,8 @@
 #' of each taxon (with name as column header).
 #' @param min_abund Minimum total abundance of taxa to be included on plot.
 #' Defaults to 50.
+#' @param xlabtext Text for x axis label. Defaults to "Distance from LW (m)" if
+#' not provided.
 #' @return Kite diagram plot (drawn with base graphics).
 #'
 #' @importFrom viridisLite viridis
@@ -13,10 +15,7 @@
 #'
 #' @export plot_kite
 # -----------------------------------------------------------
-plot_kite<-function(survey, min_abund=50){
-
-  # turn off warnings temporarily, as columns do not have headers
-#  options(warn=-1)
+plot_kite<-function(survey, min_abund=50, xlabtext=NULL){
 
   # calc totals
   survey <- aggregate(survey, by=list(c(survey[,1])), FUN=sum, na.rm=TRUE)
@@ -64,8 +63,12 @@ plot_kite<-function(survey, min_abund=50){
   # first value was 5.1, 7
   par(mar=c(7.1,11,2,2.1))
 
+  if (is.null(xlabtext)){
+    xlabtext="Distance from LW (m)"
+  }
+
   # make blank plot and add axes/ticks
-  plot(c(leftedge,rightedge), c(bottomedge, topedge), type= "n", xlab=names(surveysum)[1], frame.plot=F, yaxt="n", ylab="")
+  plot(c(leftedge,rightedge), c(bottomedge, topedge), type= "n", xlab=xlabtext, frame.plot=F, yaxt="n", ylab="")
   axis(1, at=surveysum[,1])
   axis(2, labels=names(surveysum)[2:ncol(surveysum)], font=3, at=1:(ncol(surveysum)-1), las=2, lty=0)
 
@@ -81,8 +84,6 @@ plot_kite<-function(survey, min_abund=50){
 
   # reset margins to default
   par(mar=oldMargins)
-  # turn warnings back on
-#  options(warn=0)
 }
 # end of function
 

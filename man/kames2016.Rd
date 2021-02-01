@@ -16,7 +16,7 @@ data(kames2016)
 \description{
 Data from box core survey of Kames Bay, Millport, Great Cumbrae, Scotland.
 Four replicate box core samples were taken at 5m intervals and sieved through
-a 0.5mm sieve before indentification.  Only partial data (first 4 stations)
+a 0.5mm sieve before identification.  Only partial data (first 4 stations)
 are included.
 }
 \keyword{datasets}
