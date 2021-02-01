@@ -4,8 +4,7 @@ Title: Plot Kite Diagrams
 Version: 0.1.0
 Author: Dr Rob Briers
 Maintainer: Dr Rob Briers <r.briers@napier.ac.uk>
-Description: Minimal package for plotting kite diagrams
-    Use four spaces when indenting paragraphs within the Description.
+Description: Minimal package for plotting kite diagrams using base graphics.
 License: GPL (>= 2)
 Imports: viridisLite
 Encoding: UTF-8
