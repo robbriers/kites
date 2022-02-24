@@ -68,7 +68,7 @@ plot_kite<-function(survey, min_abund=50, xlabtext=NULL){
   }
 
   # make blank plot and add axes/ticks
-  plot(c(leftedge,rightedge), c(bottomedge, topedge), type= "n", xlab=xlabtext, frame.plot=F, yaxt="n", ylab="")
+  plot(c(leftedge,rightedge), c(bottomedge, topedge), type= "n", xlab=xlabtext, frame.plot=F, xaxt="n", yaxt="n", ylab="")
   axis(1, at=surveysum[,1])
   axis(2, labels=names(surveysum)[2:ncol(surveysum)], font=3, at=1:(ncol(surveysum)-1), las=2, lty=0)
 
