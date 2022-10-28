@@ -64,7 +64,7 @@ plot_kite<-function(survey, min_abund=50, xlabtext=NULL, xaxis=TRUE){
   # first value was 5.1, 7
   par(mar=c(7.1,11,2,2.1))
 
-  if (xaxis = TRUE){
+  if (xaxis == TRUE){
     if (is.null(xlabtext)){
     xlabtext="Distance from LW (m)"
       }
@@ -72,7 +72,7 @@ plot_kite<-function(survey, min_abund=50, xlabtext=NULL, xaxis=TRUE){
 
   # make blank plot and add axes/ticks
   plot(c(leftedge,rightedge), c(bottomedge, topedge), type= "n", xlab=xlabtext, frame.plot=F, xaxt="n", yaxt="n", ylab="")
-  if (xaxis = TRUE){
+  if (xaxis == TRUE){
     axis(1, at=surveysum[,1])
     }
   axis(2, labels=names(surveysum)[2:ncol(surveysum)], font=3, at=1:(ncol(surveysum)-1), las=2, lty=0)
