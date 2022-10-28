@@ -73,7 +73,7 @@ plot_kite<-function(survey, min_abund=50, xlabtext=NULL, xaxis=TRUE){
   # make blank plot and add axes/ticks
   plot(c(leftedge,rightedge), c(bottomedge, topedge), type= "n", xlab="", frame.plot=F, xaxt="n", yaxt="n", ylab="")
   if (xaxis == TRUE){
-    axis(1, at=surveysum[,1])
+    axis(1, at=surveysum[,1], xlab=xlabtext)
     }
   else if (xaxis==FALSE){
     axis(1, at=surveysum[,1], labels=FALSE, tick=FALSE, xlab="")
