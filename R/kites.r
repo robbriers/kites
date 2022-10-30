@@ -7,6 +7,8 @@
 #' Defaults to 50.
 #' @param xlabtext Text for x axis label. Defaults to "Distance from LW (m)" if
 #' not provided.
+#' @param xticks Vector of values for x axis ticks to replace those from data.
+#' Defaults to NULL.
 #' @return Kite diagram plot (drawn with base graphics).
 #'
 #' @importFrom viridisLite viridis
@@ -15,7 +17,7 @@
 #'
 #' @export plot_kite
 # -----------------------------------------------------------
-plot_kite<-function(survey, min_abund=50, xlabtext=NULL){
+plot_kite<-function(survey, min_abund=50, xlabtext=NULL, xticks=NULL){
 
   # calc totals
   survey <- aggregate(survey, by=list(c(survey[,1])), FUN=sum, na.rm=TRUE)
@@ -69,7 +71,12 @@ plot_kite<-function(survey, min_abund=50, xlabtext=NULL){
 
   # make blank plot and add axes/ticks
   plot(c(leftedge,rightedge), c(bottomedge, topedge), type= "n", xlab=xlabtext, frame.plot=F, xaxt="n", yaxt="n", ylab="")
-  axis(1, at=surveysum[,1])
+  if (!is.null(xticks)){
+    axis(1, at=xticks)
+  }
+  else{
+    axis(1, at=surveysum[,1])
+  }
   axis(2, labels=names(surveysum)[2:ncol(surveysum)], font=3, at=1:(ncol(surveysum)-1), las=2, lty=0)
 
   # set up viridis colour sequence
